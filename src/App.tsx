@@ -1,20 +1,13 @@
-import { useState } from "react"
 
 
-function App() {
+
+export function App() {
   
-  const [count, setCount] = useState(0)
-
-
   return (
     <>
-      <p>Hello World!</p>
-
-      <button onClick={() => setCount(count + 1)}>
-        Count {count}
-      </button>
+      Ola      
     </>
   )
 }
 
-export default App
+
