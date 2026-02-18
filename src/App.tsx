@@ -6,10 +6,10 @@ export function App() {
   const [hide, setHide] = useState(false);
   const [value, setValue] = useState('');
   const [list, setList] = useState([
-    {id: '1', label: 'Fazer cafe',},
+    {id: '1', label: 'Fazer cafe',complete: false},
     {id: '2', label: 'Fazer cafe',},
-    {id: '3', label: 'fazer almoço',},
-    {id: '4', label: 'fazer janta',},
+    {id: '3', label: 'fazer almoço',complete: false},
+    {id: '4', label: 'fazer janta',complete: false},
   ]);
    //if(hide) return null;
 
@@ -36,7 +36,7 @@ export function App() {
        <button onClick={() => {
         setList([
             ...list,
-            { id: `${list.length + 1}`, label:value}]);
+            { id: `${list.length + 1}`, label:value, complete: false }]);
             setValue('');
        }}>
           Adicionar
@@ -46,7 +46,23 @@ export function App() {
 
        <ol>
         {list.map((ListItem) => (
-          <li key={ListItem.id}>{ListItem.label}</li>
+          <li key={ListItem.id}>
+            {ListItem.label}
+            
+            {ListItem.complete ? 'concluido': ''}
+            
+            <button onClick={() => {
+                setList([...list.map(item => item.id === ListItem.id ? {...item, complete: true} : item)]);
+            }}>
+              Concluir
+            </button>
+            <button onClick={() => {
+                setList([...list.filter(item => item.id !== ListItem.id)]);
+            }}>
+              Remover
+            </button>
+          </li>
+          
         ))}
        </ol>
     </div>
